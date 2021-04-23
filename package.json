@@ -13,6 +13,12 @@
             "pre-commit": "lint-staged"
         }
     },
+    "lint-staged": {
+        "*{.ts,.js}": [
+            "eslint --ext .tsx,.ts .",
+            "prettier --write"
+        ]
+    },
     "dependencies": {
         "next": "latest",
         "prettier": "^2.2.1",
