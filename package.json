@@ -14,8 +14,8 @@
         }
     },
     "lint-staged": {
-        "**/*.tsx,": [
-            "eslint --fix ."
+        "**/*{.tsx,.ts}": [
+            "yarn run eslint --fix ."
         ]
     },
     "dependencies": {
