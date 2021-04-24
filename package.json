@@ -24,6 +24,7 @@
         ]
     },
     "dependencies": {
+        "eslint-plugin-react-hooks": "^4.2.0",
         "next": "latest",
         "prettier": "^2.2.1",
         "react": "^17.0.1",
