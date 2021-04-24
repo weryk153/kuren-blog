@@ -20,7 +20,7 @@
     },
     "lint-staged": {
         "**/*{.tsx,.ts}": [
-            "yarn run eslint ."
+            "yarn run lint ."
         ]
     },
     "dependencies": {
