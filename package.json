@@ -15,13 +15,8 @@
     "private": false,
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "yarn run lint"
         }
-    },
-    "lint-staged": {
-        "**/*{.tsx,.ts}": [
-            "eslint ."
-        ]
     },
     "dependencies": {
         "eslint-plugin-react-hooks": "^4.2.0",
