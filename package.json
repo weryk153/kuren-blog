@@ -10,12 +10,12 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn lint"
+            "pre-commit": "lint-staged"
         }
     },
     "lint-staged": {
-        "*{.ts,.js}": [
-            "eslint --ext .tsx,.ts --fix ./src",
+        "*{.tsx,.ts}": [
+            "yarn run eslint --ext .tsx,.ts --fix .",
             "prettier --write"
         ]
     },
