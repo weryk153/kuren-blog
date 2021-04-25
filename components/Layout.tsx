@@ -5,13 +5,12 @@ import Footer from './Footer';
 
 type Props = {
     children?: ReactNode;
-    title?: string;
 };
 
-const Layout: FunctionComponent<Props> = ({ children, title = 'This is the default title' }: Props): JSX.Element => (
+const Layout: FunctionComponent<Props> = ({ children }: Props): JSX.Element => (
     <div>
         <Head>
-            <title>{title}</title>
+            <title>Kuren</title>
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
