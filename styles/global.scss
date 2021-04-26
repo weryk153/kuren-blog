@@ -14,12 +14,9 @@ Header {
         opacity: 0.8;
     }
     .nav {
+        a {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
     }
-    a {
-        color: #f9f9f9;
-        text-decoration: none;
-    }
-}
-
-Footer {
 }
