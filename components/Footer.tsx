@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = (): JSX.Element => (
     <footer>
         <hr />
-        <span>我是 footer</span>
+        <span>© 2021-2021 K 製作</span>
     </footer>
 );
 

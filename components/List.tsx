@@ -1,13 +1,13 @@
 import * as React from 'react';
 import ListItem from './ListItem';
 import { User } from '../interfaces';
-
+import post from '../styles/post.module.scss'
 type Props = {
     items: User[];
 };
 
 const List = ({ items }: Props) => (
-    <ul>
+    <ul className={post.postList}>
         {items.map((item) => (
             <li key={item.id}>
                 <ListItem data={item} />

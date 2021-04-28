@@ -8,11 +8,11 @@ const Header = (): JSX.Element => (
         </Link>
         <nav className="nav">
             <Link href="/about">
-                <a>About</a>
+                About
             </Link>{' '}
             |{' '}
             <Link href="/posts">
-                <a>沒東西</a>
+                沒東西
             </Link>
         </nav>
     </header>
