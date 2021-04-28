@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 const AboutPage = (): JSX.Element => (
     <Layout>
         <h1>About</h1>
-        <p>This is the about page</p>
+        <p>流愛吃屎</p>
         <p>
             <Link href="/">
                 <a>Go home</a>

@@ -3,14 +3,16 @@ import Link from 'next/link';
 
 const Header = (): JSX.Element => (
     <header>
-        <div className="title">K</div>
+        <Link href="/">
+            <div className="title">K</div>
+        </Link>
         <nav className="nav">
-            <Link href="/">
-                <a>Home</a>
-            </Link>{' '}
-            |{' '}
             <Link href="/about">
                 <a>About</a>
+            </Link>{' '}
+            |{' '}
+            <Link href="/posts">
+                <a>沒東西</a>
             </Link>
         </nav>
     </header>

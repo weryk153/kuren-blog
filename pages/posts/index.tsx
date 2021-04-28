@@ -13,15 +13,12 @@ type Props = {
 
 const WithStaticProps = ({ items }: Props): JSX.Element => (
     <Layout>
-        <h1>Users List</h1>
-        <p>
-            Example fetching data from inside <code>getStaticProps()</code>.
-        </p>
-        <p>You are currently on: /users</p>
+        <h1>還是沒東西</h1>
+        <p>正在長東西</p>
         <List items={items || []} />
         <p>
             <Link href="/">
-                <a>Go home</a>
+                <a>not Go home</a>
             </Link>
         </p>
     </Layout>
