@@ -4,10 +4,11 @@ import Header from './Header';
 import Footer from './Footer';
 
 type Props = {
+    meta?: { title: string; author: string };
     children?: ReactNode;
 };
 
-const Layout: FunctionComponent<Props> = ({ children }: Props): JSX.Element => (
+const Layout: FunctionComponent<Props> = ({ children, meta }: Props): JSX.Element => (
     <div>
         <Head>
             <title>Kuren</title>
@@ -15,6 +16,8 @@ const Layout: FunctionComponent<Props> = ({ children }: Props): JSX.Element => (
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <Header />
+        <p>{meta && meta.title}</p>
+        <p>{meta && meta.author}</p>
         {children}
         <Footer />
     </div>
