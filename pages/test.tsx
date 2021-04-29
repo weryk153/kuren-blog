@@ -2,7 +2,7 @@ import React from 'react';
 import MDXDocument, { metadata } from './post/test.mdx';
 import Layout from '../components/Layout';
 
-const Test = () => (
+const Test = (): JSX.Element => (
     <Layout>
         <MDXDocument />
         <footer>
