@@ -10,7 +10,7 @@ type Props = {
     errors?: string;
 };
 
-const StaticPropsDetail = ({ post, errors }: Props): JSX.Element => {
+const StaticPropsDetail = ({ errors }: Props): JSX.Element => {
     if (errors) {
         return (
             <Layout>
