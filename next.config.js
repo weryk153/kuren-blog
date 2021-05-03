@@ -4,7 +4,6 @@ const withPlugins = require('next-compose-plugins');
 const detectFrontmatter = require('remark-frontmatter');
 const optimizedImages = require('next-optimized-images');
 
-
 module.exports = withPlugins(
     [
         [
@@ -15,12 +14,22 @@ module.exports = withPlugins(
                 },
             }),
         ],
-        [optimizedImages, {}]
+        [optimizedImages, {}],
     ],
     {
         pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
         sassOptions: {
             includePaths: [path.join(__dirname, 'styles')],
+        },
+        webpack: (config, { isServer }) => {
+            // Fixes npm packages that depend on `fs` module
+            if (!isServer) {
+                config.node = {
+                    fs: 'empty',
+                };
+            }
+
+            return config;
         },
     },
 );

@@ -5,13 +5,15 @@ import { User } from '../../interfaces';
 import { sampleUserData } from '../../utils/sample-data';
 import Layout from '../../components/Layout';
 import ListDetail from '../../components/ListDetail';
+import { blogFilePaths } from '../../utils/mdxUtils';
+import Link from 'next/link';
 
 type Props = {
-    item?: User;
+    post?: string;
     errors?: string;
 };
 
-const StaticPropsDetail = ({ item, errors }: Props): JSX.Element => {
+const StaticPropsDetail = ({ post, errors }: Props): JSX.Element => {
     if (errors) {
         return (
             <Layout>
@@ -22,15 +24,27 @@ const StaticPropsDetail = ({ item, errors }: Props): JSX.Element => {
         );
     }
 
-    return <Layout>{item && <ListDetail item={item} />}</Layout>;
+    return (
+        <div className="max-w-screen-lg mx-auto">
+            {blogFilePaths.map((post) => (
+                <Link key={post} href={post} replace={true}>
+                    <a>
+                        {post}
+                        {/* <PostBanner {...post.options} className='my-5' contentClassName='p-5' titleClassName='text-xl md:text-3xl' /> */}
+                    </a>
+                </Link>
+            ))}
+        </div>
+    );
 };
 
 export default StaticPropsDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
     // Get the paths we want to pre-render based on users
-    const paths = sampleUserData.map((user) => ({
-        params: { id: user.id.toString() },
+    // const mdxPaths = blogFilePaths;
+    const paths = blogFilePaths.map((post) => ({
+        params: { post },
     }));
 
     // We'll pre-render only these paths at build time.
@@ -43,11 +57,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
-        const id = params?.id;
-        const item = sampleUserData.find((data) => data.id === Number(id));
+        const post = params?.post;
+        const content = blogFilePaths.find((data) => data === post);
         // By returning { props: item }, the StaticPropsDetail component
         // will receive `item` as a prop at build time
-        return { props: { item } };
+        console.log(post);
+
+        return { props: { content } };
     } catch (err) {
         return { props: { errors: err.message } };
     }
