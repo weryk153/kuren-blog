@@ -23,7 +23,7 @@ const StaticPropsDetail = ({ errors }: Props): JSX.Element => {
 
     return (
         <div className="max-w-screen-lg mx-auto">
-            {blogFilePaths.map((post) => (
+            {blogFilePaths.map((post: string) => (
                 <Link key={post} href={post} replace={true}>
                     <a>
                         {post}
@@ -40,7 +40,7 @@ export default StaticPropsDetail;
 export const getStaticPaths: GetStaticPaths = async () => {
     // Get the paths we want to pre-render based on users
     // const mdxPaths = blogFilePaths;
-    const paths = blogFilePaths.map((post) => ({
+    const paths = blogFilePaths.map((post: string) => ({
         params: { post },
     }));
 
@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const post = params?.post;
-        const content = blogFilePaths.find((data) => data === post);
+        const content = blogFilePaths.find((data: string) => data === post);
         // By returning { props: item }, the StaticPropsDetail component
         // will receive `item` as a prop at build time
         console.log(post);
