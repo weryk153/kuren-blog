@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs';
 // import glob from 'fast-glob'
-const path = require('path');
+import path from 'path';
 
 // POSTS_PATH is useful when you want to get the path to a specific file
 export const POSTS_PATH = path.join(process.cwd(), 'pages/post');

@@ -8,9 +8,10 @@ import Link from 'next/link';
 type Props = {
     post?: string;
     errors?: string;
+    blogFilePaths: any;
 };
 
-const StaticPropsDetail = ({ errors }: Props): JSX.Element => {
+const StaticPropsDetail = ({ errors, blogFilePaths }: Props): JSX.Element => {
     if (errors) {
         return (
             <Layout>
@@ -52,15 +53,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries.
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async () => {
     try {
-        const post = params?.post;
-        const content = blogFilePaths.find((data: string) => data === post);
-        // By returning { props: item }, the StaticPropsDetail component
-        // will receive `item` as a prop at build time
-        console.log(post);
-
-        return { props: { content } };
+        return { props: { blogFilePaths } };
     } catch (err) {
         return { props: { errors: err.message } };
     }
