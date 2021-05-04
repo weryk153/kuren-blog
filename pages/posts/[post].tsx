@@ -1,24 +1,19 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-
 import React from 'react';
-import Layout from '../../components/Layout';
 import { blogFilePaths } from '../../utils/mdxUtils';
 import Link from 'next/link';
 
 type Props = {
-    post?: string;
     errors?: string;
-    blogFilePaths: any;
+    blogFilePaths: string[];
 };
 
 const StaticPropsDetail = ({ errors, blogFilePaths }: Props): JSX.Element => {
     if (errors) {
         return (
-            <Layout>
-                <p>
-                    <span style={{ color: 'red' }}>Error:</span> {errors}
-                </p>
-            </Layout>
+            <p>
+                <span style={{ color: 'red' }}>Error:</span> {errors}
+            </p>
         );
     }
 

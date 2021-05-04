@@ -7,7 +7,7 @@ type Props = {
     data: User;
 };
 
-const ListItem = ({ data }: Props) => (
+const ListItem = ({ data }: Props): JSX.Element => (
     <Link href="/posts/[id]" as={`/posts/${data.id}`}>
         <a>
             {data.id}: {data.name}
