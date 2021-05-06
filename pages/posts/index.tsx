@@ -2,25 +2,22 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { blogFilePaths } from '../../utils/mdxUtils';
-import path from 'path';
-import fs from 'fs';
-import matter from "gray-matter";
 
 type Props = {
     blogFilePaths: string[];
-    data: { title: string, slug: string }
+    postMetadata: { title: React.ReactNode }[]
 };
 
-const WithStaticProps = ({ blogFilePaths, data }: Props): JSX.Element => (
+const WithStaticProps = ({ blogFilePaths, postMetadata }: Props): JSX.Element => (
     <>
         <h1>還是沒東西</h1>
         <p>正在長東西</p>
-        {blogFilePaths.map((postPath: string) => (
+        {blogFilePaths.map((postPath: string, index: number) => (
             <Link key={postPath} href={`post/${postPath}`}>
                 <a>
                     <div>
                         {/* {postPath} */}
-                        {data.title}
+                        {postMetadata[index].title}
                         {/* <PostBanner {...post.options} className='my-5' contentClassName='p-5' titleClassName='text-xl md:text-3xl' /> */}
                     </div>
                 </a>
@@ -35,14 +32,12 @@ const WithStaticProps = ({ blogFilePaths, data }: Props): JSX.Element => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-    const folderPath = path.join(process.cwd(), "pages/post");
-    const filePath = path.join(folderPath, `test.mdx`);
-    const rawFileSource = fs.readFileSync(filePath);
-    const { data } = matter(rawFileSource);
-    console.log(data);
+    const postModules = await Promise.all(
+        blogFilePaths.map(async (p: string) => import(`../post/${p}.mdx`))
+    );
+    const postMetadata = postModules.map((m) => m.meta);
 
-
-    return { props: { blogFilePaths, data } };
+    return { props: { blogFilePaths, postMetadata } };
 };
 
 export default WithStaticProps;
