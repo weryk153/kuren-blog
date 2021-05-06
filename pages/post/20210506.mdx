@@ -1,3 +1,5 @@
+import PostWrapper from '../../components/PostWrapper.tsx'
+
 export const meta = {
     title: '測試',
 };
@@ -46,3 +48,5 @@ export const meta = {
 > Quote text 1
 >> Quote text 2
 >>> Quote text 3
+
+export default ({ children }) => <PostWrapper>{children}</PostWrapper>

@@ -1,3 +1,4 @@
+import PostWrapper from '../../components/PostWrapper.tsx'
 export const meta = {
     title: '中文',
 };
@@ -5,4 +6,17 @@ export const meta = {
 I **love** using [Next.js](https://nextjs.org/)
 
 # Post about MDX
+123 12312312312312312312312
 
+123123123
+12312
+***31231***
+
+<div style={{ padding: '10px 30px', backgroundColor: 'tomato' }}>
+  <h2>Try making this heading have the color green</h2>
+</div>
+
+<span style={{color:'blue'}}>some *blue* text</span>
+
+
+export default ({ children }) => <PostWrapper>{children}</PostWrapper>

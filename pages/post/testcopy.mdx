@@ -1,3 +1,5 @@
+import PostWrapper from '../../components/PostWrapper.tsx'
+
 export const meta = {
     title: 'Markdown/MDX with Next.js',
 };
@@ -6,3 +8,4 @@ I **love** using [Next.js](https://nextjs.org/)
 
 # Post about MDX
 
+export default ({ children }) => <PostWrapper>{children}</PostWrapper>

@@ -1,3 +1,18 @@
-.postList li a {
-    color: #f9f9f9;
+.container {
+
 }
+
+.postList {
+    display: flex;
+    flex-direction: column;;
+    a{
+        color: #fff;
+        width:fit-content;
+    }
+}
+
+.postWrapper {
+    margin: 0 auto;
+    width: 80%;
+}
+
