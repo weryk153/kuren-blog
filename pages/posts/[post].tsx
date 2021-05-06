@@ -4,30 +4,33 @@ import { blogFilePaths } from '../../utils/mdxUtils';
 import Link from 'next/link';
 
 type Props = {
-    errors?: string;
     blogFilePaths: string[];
+    postMetadata: { title: React.ReactNode }[]
 };
 
-const StaticPropsDetail = ({ errors, blogFilePaths }: Props): JSX.Element => {
-    if (errors) {
-        return (
-            <p>
-                <span style={{ color: 'red' }}>Error:</span> {errors}
-            </p>
-        );
-    }
+const StaticPropsDetail = ({ blogFilePaths, postMetadata }: Props): JSX.Element => {
 
     return (
-        <div className="max-w-screen-lg mx-auto">
-            {blogFilePaths.map((post: string) => (
-                <Link key={post} href={post} replace={true}>
+        <>
+            <h1>還是沒東西</h1>
+            <p>正在長東西</p>
+            {blogFilePaths.map((postPath: string, index: number) => (
+                <Link key={postPath} href={`post/${postPath}`}>
                     <a>
-                        {post}
-                        {/* <PostBanner {...post.options} className='my-5' contentClassName='p-5' titleClassName='text-xl md:text-3xl' /> */}
+                        <div>
+                            {/* {postPath} */}
+                            {postMetadata[index].title}
+                            {/* <PostBanner {...post.options} className='my-5' contentClassName='p-5' titleClassName='text-xl md:text-3xl' /> */}
+                        </div>
                     </a>
                 </Link>
             ))}
-        </div>
+            <p>
+                <Link href="/">
+                    <a>not Go home</a>
+                </Link>
+            </p>
+        </>
     );
 };
 
@@ -49,9 +52,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export const getStaticProps: GetStaticProps = async () => {
-    try {
-        return { props: { blogFilePaths } };
-    } catch (err) {
-        return { props: { errors: err.message } };
-    }
+    const postModules = await Promise.all(
+        blogFilePaths.map(async (p: string) => import(`../post/${p}.mdx`))
+    );
+    const postMetadata = postModules.map((m) => m.meta);
+
+    return { props: { blogFilePaths, postMetadata } };
 };
